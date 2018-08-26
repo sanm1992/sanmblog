@@ -16,9 +16,8 @@ class Client::BlogsController < Client::BaseController
 	def by_tag
 		articles = Article.by_tag params['tag']
 		@page_no = params['page_no'] || 1
-		@page_size = 15
+		@page_size = 1
 		@count = articles.size
 		@articles = articles.limit(@page_size.to_i).offset(@page_no.to_i-1)
-		render 'client/home/index'
 	end
 end

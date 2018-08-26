@@ -16,14 +16,22 @@ module ApplicationHelper
   	time.strftime("%m-%d") if time.present?
   end
 
-  def paging(url_path, count, page_no, page_size=15)
+  def paging(url_path, count, page_no, page_size=15, *params)
   	return ''.html_safe if count.to_i < page_size.to_i
 
   	prv_page   = page_no.to_i - 1
   	next_page  = page_no.to_i + 1
-  	page_count = (count.to_f/page_size.to_f).ceil 
+  	page_count = (count.to_f/page_size.to_f).ceil
 
-  	base_url = "#{url_path}?page_no="
+    base_url = "#{url_path}?" 
+
+    if params.present?
+      params.each do |param|
+        base_url += "#{param.keys.first.to_s}=#{param.values.first}&"
+      end
+    end
+
+  	base_url += "page_no="
 
   	if page_no.to_i > 1
   		prv_herf = base_url + prv_page.to_s
@@ -40,10 +48,10 @@ module ApplicationHelper
   	end
 
   	pag_str = "<ul class='mui-flex justify'>"+
-		  	'<li>'+prv_link+'</li>'+
-		  	'<li><span>'+ "#{page_no}/#{page_count}" +'</span></li>'+
-		  	'<li>'+next_link+'</li>'+
-		  '</ul>'
+        		  	'<li>'+prv_link+'</li>'+
+        		  	'<li><span>'+ "#{page_no}/#{page_count}" +'</span></li>'+
+        		  	'<li>'+next_link+'</li>'+
+        		  '</ul>'
 		 
 		pag_str.html_safe  
   end

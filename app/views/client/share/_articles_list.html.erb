@@ -1,0 +1,18 @@
+<% if articles.present? %>
+	<ul class="articles">
+		<% articles.each do |article| %>
+			<li>
+				<h1><%= article.title %></h1>
+				<time class="mui-flex verticent"><i class="am-icon-calendar am-icon-fw"></i><%= format_date article.created_at %></time>
+				<a href= <%=client_blog_path(article)%>>
+					<p><%= article.content %></p>
+				</a>
+			</li>
+		<% end %>
+	</ul>
+	
+<% else %>
+	<div class="home-notice">
+		<p>博主最近比较懒，没有跟新博客</p>
+	</div>
+<% end %>
