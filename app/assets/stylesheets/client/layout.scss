@@ -1,0 +1,184 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+header{
+	/*background-image: url("http://bpic.588ku.com/back_pic/00/04/20/33/4b640ca64d1bed8f47e88d1809e23146.jpg!r850/fw/800");*/
+	padding-top: 1rem;
+  h1 {
+  	font-weight: 600;
+  	font-size: 4rem;
+  }
+  p {
+  	color: #999999;
+  }
+}
+
+.sit-container{
+  
+}
+
+footer {
+  color: #fff;
+  background-color: #222222;
+  padding: 1rem;
+  width: 100%;
+
+}
+
+a {
+	text-decoration:none;
+}
+
+.navbar-default {
+	background-color: #222222;
+	border-radius: 0;
+	border-color: #222222;
+	padding: 0.5rem;
+	color: #fff;
+
+	.nav-title {
+		color: #fff;
+
+		&:hover{
+			color: #bfb5b5;
+		};
+	}
+
+	.nav-title{
+	  font-family: 'Abril Fatface', cursive; 
+	  font-size: 2rem;
+	  /*font-family: 'Monoton', cursive;*/
+	}
+	.navbar-nav>li>a {
+		color: #fff;
+		font-size: 1.5rem;
+
+		&:hover{
+			color: #bfb5b5;
+		};
+	}
+}
+
+.main-content {
+	margin-bottom: 20px;
+	background-color: #fff;
+}
+
+.gotop {
+	position: fixed;
+	bottom: 50px;
+	right: 10px;
+	cursor:pointer;
+	font-size: xx-large;
+	color: #0000004a;
+
+	&:hover {
+		color: #000000ab;
+	};
+}
+
+.right-sidebar {
+	.not_open {
+		position: relative;
+
+		&:hover {
+			&:after {
+				content: "博主尚未开通";
+				font-size: 3px;
+				position: absolute;
+				border:solid 1px #efefef;
+				border-radius: 3px;
+				width: 80px;
+				display: block;
+				line-height: 15px;
+				left: -15px
+			};
+		};
+	}
+
+	.weixin {
+		position: relative;
+		cursor: pointer;
+	}
+
+	ul {
+		padding: 0;
+
+		li {
+			list-style-type:none;
+			background-color: #fff;
+		}
+
+		.about-me {
+			position: relative;
+			padding: 2rem;
+			.thumbnail {
+				border: none;
+				margin-bottom: 0;
+
+				.caption {
+					padding: 0;
+					padding-top: 10px; 
+
+					p {
+						margin-top: 0;
+						margin-bottom: 10px;
+
+						a {
+							font-size: 2rem;
+						}
+					}
+				}
+			}
+
+			img {
+				border-radius: 0;
+			}
+		}
+
+		.mark {
+			margin-top: 2rem;
+			padding: 2rem;
+
+			a {
+				font-size: 1rem;
+				border: solid 1px #ccc;
+				border-radius: 15px;
+				padding: 5px;
+				text-decoration:none;
+				color: #ccc;
+				display: inline-block;
+    		margin-bottom: 7px;
+
+				&:hover {
+					color: #7b7777;
+					border-color: #7b7777;
+				};
+			}
+		}
+
+		.new-articles {
+			margin-top: 2rem;
+			padding: 2rem;
+
+			p {
+				margin: 0; 
+				margin-bottom: 2px;
+				font-size: 15px;
+			}
+
+			.time {
+				font-size: 2px;
+				padding: 0 1rem;
+			}
+
+			li {
+				margin-bottom: 1rem;
+			}
+		}
+	}
+	
+}

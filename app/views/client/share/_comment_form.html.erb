@@ -1,0 +1,99 @@
+<div class="comment">
+	<h2 class="comment-button">评论留言<i class="am-icon-send"></i></h2>
+
+	<ul class="am-comments-list am-comments-list-flip">
+		<% comments.each do |comment| %>
+			<li class="am-comment">
+				<article class="am-comment">
+				  <a href="#link-to-user-home">
+				    <!-- <img src=<%= asset_path("about_me1.jpg") %> alt="" class="am-comment-avatar" width="48" height="48"/> -->
+				    <span class="am-comment-avatar mui-flex verticent horicent" width="48" height="48" style="background-color: #d4d0d0; color: aliceblue; font-size: x-large; font-weight: 500;">
+				    	<%= comment['floor'] %>
+				    </span>
+				  </a>
+
+				  <div class="am-comment-main" style="margin-right: 0;">
+				    <header class="am-comment-hd">
+				      <div class="am-comment-meta mui-flex justify">
+				      	<div>
+					        <a href="#link-to-user" class="am-comment-author"><%= "#{comment['floor']}楼#{comment['user_name']}" %></a>
+					        评论于 <time datetime=<%="#{comment['created_at']}"%> title=""><%= format_date comment['created_at'] %></time>		
+				      	</div>
+
+				        <a class="comment-reply" data-reply-id=<%= comment['floor'] %> data-floor=<%=comment['floor']%> href="javascript:;">
+				        	<i class="am-icon-reply"></i></span></a>
+				      </div>
+				    </header>
+
+				    <div class="am-comment-bd comment-content">
+				    	<% if comment['reply_to'].present? %>
+				    		<span>@<%= comment['reply_to'] %>楼：</span>
+				    	<% end %>
+				      <%=comment.content %>
+				    </div>
+				  </div>
+				</article>
+			</li>
+		<% end %>
+	</ul>
+
+	<%= form_tag(client_comments_path, method: "post", id: "comment_form") do %>
+		<% if flash[:notice] %>
+		  <div class="notice alert alert-warning alert-dismissible" role="alert">
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			  <%= flash[:notice] %>
+			</div>
+		<% end %>
+
+		<%= hidden_field_tag :article_id, article.id  %>
+		<%= hidden_field_tag :floor, comments.size+1 %>
+		<div class="form-group">
+	    <label class="title" for="content">您的留言</label>
+	    <div class="reply-mark"></div>
+	    
+	    <textarea class="form-control" id="content" placeholder="想说什么" name="content" required></textarea>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="title" for="user_name">您的姓名</label>
+	    <input type="text" class="form-control" id="user_name" placeholder="姓名:必填" name="user_name" required>
+	  </div>
+
+	  <div class="form-group">
+	    <label class="title" for="email">您的邮箱</label>
+	    <input type="email" class="form-control" id="email" placeholder="邮箱:必填" name="email" required>
+	  </div>
+	  <button type="submit" class="btn btn-default">发表留言</button>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () { 
+		var root = $(".comment");
+
+		$("a.comment-reply").on('click', function(){
+			var form = root.find("#comment_form");
+			var data = $(this).data();
+			var inputStr = '<input type="hidden" name="reply_to" id="reply_to" value="' + data.replyId + '">'
+			var replyToInput = form.find("input#reply_to");
+			if(replyToInput.length > 0) {
+				replyToInput.remove();
+			}
+			form.prepend(inputStr);
+			
+			$("#content").focus();
+
+			var replyMark = '<span class="reply-to">@'+data.floor +'楼</span>' +
+	    								'<span class="am-close delete-reply">&times;</span>';
+			$(".reply-mark").empty().prepend(replyMark);
+
+		});
+
+		root.on("click", ".delete-reply", function() {
+			$(this).parent().empty();
+			root.find("input#reply_to").remove();
+		})		
+
+
+  });
+</script>

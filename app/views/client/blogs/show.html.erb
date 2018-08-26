@@ -1,0 +1,22 @@
+<div class="blog-show">
+	<% if  @article.present? %>
+		<%= render partial: "client/share/show_blog", locals: {article: @article} %>
+
+		<div class="mui-flex horicent justify guide-post">
+			<div>
+				<% if @previous.present? %>
+					<a href=<%=client_blog_path(@previous)%>> <i class="am-icon-angle-left"></i>上一篇</a>
+				<% end %>
+			</div>
+			<div>
+				<% if @next.present? %>
+					<a href=<%=client_blog_path(@next)%>>下一篇<i class="am-icon-angle-right"></i> </a>
+				<% end %>
+			</div>
+		</div>
+
+		<%= render partial: "client/share/comment_form", locals: {article: @article, comments: @comments} %>
+	<% else %>
+		<span>博主正在玩命更新中...</span>
+	<% end %>
+</div>

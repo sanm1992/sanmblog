@@ -1,0 +1,15 @@
+<div class="blog">
+	<div class="blog-header">
+		<h1 class="mui-flex horicent"><%= article&.title %></h1>
+		<div class="mui-flex horicent verticent">
+			<time><i class="am-icon-calendar am-icon-fw"></i><%= format_date article&.created_at %></time>
+			<a href="" class="mark"><%= I18n.t("client.article.#{article&.tag}") %></a>
+		</div>
+	</div>
+
+	<div class="blog-content">
+		<p><%= article&.content %></p>
+	</div>
+</div>
+
+

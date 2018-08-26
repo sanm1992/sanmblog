@@ -1,0 +1,13 @@
+.comment {
+	.comment-reply {
+		&:hover {
+			color: #000;
+		};
+	}
+
+	.reply-mark {
+		.delete-reply {
+			color: red;
+		}
+	}
+}

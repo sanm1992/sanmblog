@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SanmBlog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <link rel="icon" href=<%= asset_path("logo.png") %> type="image/x-icon"/>
+    <title>三木</title>
+    <%= csrf_meta_tags %>
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--amazeui 图库-->
+    <link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.css" rel="stylesheet">
+    <link href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css" rel="stylesheet">
+
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= reload_style %w(common client/layout client/home client/blog_show client/about client/archive client/comment) %>
+    <!--字体-->
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Comfortaa|Yellowtail" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Marck+Script|Monoton|Oleo+Script|Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kurale" rel="stylesheet">
+  </head>
+
+  <body style="background-color: #efefef">
+    <header itemscope="itemscope" id="masthead" class="site-header">
+      <div class="container mui-flex">
+        <div class="site-branding">
+          <h1 class="main-title" itemprop="headline">三木</h1>
+          <p class="site-description">学习-分享 | 技术-生活</p>
+        </div>
+
+        <div class="weather">
+          <iframe width="200" scrolling="no" height="65" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1">
+          </iframe>
+        </div>
+      </div>
+    </header>
+    <nav id="client_navbar" class="navbar navbar-default client_navbar" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".bs-js-navbar-scrollspy">
+              <span class="sr-only">切换导航</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          <a href="/client/home" class="navbar-brand nav-title">Sanm1992</a>
+        </div>
+        <div class="collapse navbar-collapse bs-js-navbar-scrollspy">
+          <ul class="nav navbar-nav navbar-right">
+            <li class=""><a href="/client/home">首页</a></li>
+            <li class=""><a href=<%= client_archives_path %>>归档</a></li>
+            <li class=""><a href=<%= client_about_index_path %>>关于</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+        
+    <div class="container sit-container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-8 main-content">
+          <%= yield %>
+          <div class="gotop" style="display: none;">
+            <i class="am-gotop-icon am-icon-angle-double-up"></i>
+          </div>
+          
+        </div>
+        <div class="hidden-xs col-sm-4 col-md-4 right-sidebar">
+          <ul>
+            <li class="about-me">
+              <h3>关于我</h3>
+              <div class="thumbnail">
+                <img alt="sanm" class="img-rounded img-responsive" src=<%= asset_path("about_me1.jpg") %>>
+                <div class="caption">
+                  <p>坐标：深圳</p>
+                  <p>工作：ruby程序猿</p>
+                  <p></p>
+                  <p class="mui-flex justify link-me">
+                    <a href="https://github.com/sanm1992" class="am-icon-btn am-icon-github" target="_blank" ></a>
+                    <a class="am-icon-btn am-icon-weixin weixin" data-container="body" data-toggle="popover" data-placement="bottom" data-content='<img alt="sanm" class="img-rounded img-responsive" src=<%= asset_path("WechatIMG.jpeg") %>>'>
+                    </a>
+                    <a href="https://weibo.com/u/2639321232" class="am-icon-btn am-icon-weibo" target="_blank" ></a>
+ 
+                    <a href="javascript:void(0)" class="am-icon-btn am-icon-twitter not_open"></a>
+                    <a href="javascript:void(0)" class="am-icon-btn am-icon-facebook not_open"></a>
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="mark">
+              <h3>标签</h3>
+              <p class="">
+                <a href=<%= by_tag_client_blogs_url(tag: ArticleTag::GOSSIP) %>>闲谈</a>
+                <a href=<%= by_tag_client_blogs_url(tag: ArticleTag::CSS)%>>css</a>
+                <a href=<%= by_tag_client_blogs_url(tag: ArticleTag::RUBY)%>>ruby</a>
+                <a href=<%= by_tag_client_blogs_url(tag: ArticleTag::JS)%>>JavaScript</a>
+              </p>
+            </li>
+            <li class="new-articles">
+              <h3>近期跟新</h3>
+              <ul>
+                博主正在玩命跟新中
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer itemscope="itemscope" class="">
+      <div class="mui-flex horicent">
+        <span>© 2018 • sanm-blog</span>
+      </div>
+    </footer>
+
+    <script>
+      $(document).ready(function () { 
+        // $("[data-toggle='popover']").popover({html : true });
+        $('.weixin').popover({html : true })
+        
+        $(window).scroll(function(event){
+          var winPos = $(window).scrollTop();
+          var goTop = $(".gotop");
+          if(winPos > 400) {
+            goTop.show();
+          } else {
+            goTop.hide();
+          }
+        });
+
+        $('body').on('click', '.gotop', function(){
+          $('html').animate({scrollTop: 0}, '500');
+        })
+
+      });
+    </script>
+  </body>
+</html>

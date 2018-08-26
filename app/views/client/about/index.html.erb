@@ -1,0 +1,8 @@
+<div class="about">
+	<% if @about_me.present? %>
+		<%= render partial: "client/share/show_blog", locals: {article: @about_me} %>
+		<%= render partial: "client/share/comment_form", locals: {article: @about_me, comments: @comments} %>
+	<% else %>
+		<span>博主正在努力更新中...</span>
+	<% end %>
+</div>

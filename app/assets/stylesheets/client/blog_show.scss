@@ -1,0 +1,68 @@
+.blog-show {
+	padding: 3rem 2rem;
+
+}
+
+.blog{
+	.blog-header {
+		time {
+			color: #989696;
+		}
+
+		a {
+			color: #989696;
+			background: #fff;
+	    margin-left: 3rem;
+			&:hover {
+				text-decoration:none;
+				color: #000;
+			};
+			&:visited {
+				text-decoration:none;
+			};
+		}
+	}
+
+	.blog-content {
+		margin-top: 3rem;
+	}
+
+}
+
+.guide-post {
+	margin-bottom: 3rem;
+	a {
+		color: #989696;
+		&:hover {
+			text-decoration:none;
+			color: #000;
+		};
+		&:visited {
+			text-decoration:none;
+		};
+	}
+}
+.comment {
+	.comment-button {
+		font-weight: 500;
+		padding-bottom: 1rem;
+		border-bottom: solid 1px #989696;
+		/*border-bottom-style: dashed;*/
+
+		&:hover {
+			cursor: pointer;
+		};
+	}
+
+	form {
+		.title {
+			font-size: 1.5rem;
+  		font-weight: 400;
+		}
+		textarea {
+			 resize:none;
+			 min-height: 10rem;
+			 max-height: 10rem;
+		}
+	}
+}

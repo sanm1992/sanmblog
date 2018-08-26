@@ -1,0 +1,23 @@
+<div class="archive">
+	<section class="archive-content">
+		<div class="mui-flex verticent count">
+			<div class="main-tag"></div>
+			<span>总计<%= @archives['count'] %>篇文章</span>
+		</div>
+		<div class="group">
+			<% @archives['articles'].each do |key, article| %>
+				<div class="group-mate">
+					<h2><%= key %></h2>
+				</div>
+				<% article.each do |post| %>
+					<div class="gropu-item">
+						<a href=<%=client_blog_path(post['id'])%> class="title-link">
+							<span class="time"><%= month_day post['created_at'] %></span>
+							<span class="title-name"><%= post['title'] %></span>
+						</a>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+	</section>
+</div>
