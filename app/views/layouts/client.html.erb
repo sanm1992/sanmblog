@@ -23,7 +23,7 @@
     <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= reload_style %w(common client/layout client/home client/blog_show client/about client/archive client/comment) %>
+    <%= reload_style %w(common client/layout client/home client/article_show client/about client/archive client/comment) %>
     <!--字体-->
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Comfortaa|Yellowtail" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Marck+Script|Monoton|Oleo+Script|Oswald" rel="stylesheet">
@@ -100,10 +100,10 @@
             <li class="mark">
               <h3>标签</h3>
               <p class="">
-                <a href=<%= by_tag_client_blogs_url(tag: ArticleTag::GOSSIP) %>>闲谈</a>
-                <a href=<%= by_tag_client_blogs_url(tag: ArticleTag::CSS)%>>css</a>
-                <a href=<%= by_tag_client_blogs_url(tag: ArticleTag::RUBY)%>>ruby</a>
-                <a href=<%= by_tag_client_blogs_url(tag: ArticleTag::JS)%>>JavaScript</a>
+                <a href=<%= by_tag_client_articles_url(tag: ArticleTag::GOSSIP) %>>闲谈</a>
+                <a href=<%= by_tag_client_articles_url(tag: ArticleTag::CSS)%>>css</a>
+                <a href=<%= by_tag_client_articles_url(tag: ArticleTag::RUBY)%>>ruby</a>
+                <a href=<%= by_tag_client_articles_url(tag: ArticleTag::JS)%>>JavaScript</a>
               </p>
             </li>
             <li class="new-articles">

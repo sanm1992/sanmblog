@@ -1,7 +1,7 @@
 <div class="home-index">
 	<%= render partial: "client/share/articles_list", locals: {articles: @articles} %>
 	<nav class="pagination">
-	  <%= paging by_tag_client_blogs_path, @count, @page_no, @page_size, tag: params['tag']%>
+	  <%= paging by_tag_client_articles_path, @count, @page_no, @page_size, tag: params['tag']%>
 	</nav>
 </div>
 	

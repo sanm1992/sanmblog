@@ -5,16 +5,20 @@ Rails.application.routes.draw do
   namespace :client do
   	root 'home#index', as: 'root'
   	resources :home, only: [:index]
-  	resources :blogs, only: [:index]
+  	resources :articles, only: [:index]
   	resources :about, only: [:index]
     resources :archives, only: [:index]
     # resources :comments, except: [:destroy, :index, :show]
     resources :comments, only: [:create, :index]
-    resources :blogs do 
+    resources :articles do 
       collection do
         get 'by_tag'
       end
     end
+  end
 
+  namespace :admin do
+    root 'articles#index', as: 'root'
+    resources :articles
   end
 end

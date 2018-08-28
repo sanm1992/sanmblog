@@ -11,7 +11,7 @@
 				</div>
 				<% article.each do |post| %>
 					<div class="gropu-item">
-						<a href=<%=client_blog_path(post['id'])%> class="title-link">
+						<a href=<%=client_article_path(post['id'])%> class="title-link">
 							<span class="time"><%= month_day post['created_at'] %></span>
 							<span class="title-name"><%= post['title'] %></span>
 						</a>

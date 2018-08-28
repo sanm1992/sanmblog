@@ -14,6 +14,6 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.paths << Rails.root.join('client')
 Rails.application.config.assets.precompile += %w( 
-	common.scss client/layout.scss client/home.scss client/blog_show.scss client/about.scss client/archive.scss
+	common.scss client/layout.scss client/home.scss client/article_show.scss client/about.scss client/archive.scss
 	client/comment.scss
 )

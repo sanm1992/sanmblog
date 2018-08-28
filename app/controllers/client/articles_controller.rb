@@ -1,4 +1,4 @@
-class Client::BlogsController < Client::BaseController
+class Client::ArticlesController < Client::BaseController
 	def show
 		id = params['id'].to_i
 		articles = Article.tec_articles.where(id: [id-1, id, id+1]).group_by{|article| article.id}
