@@ -1,0 +1,24 @@
+<h3 style="text-align: center;"><%= @article.new_record? ? '新建文章' : '编辑文章' %></h3>
+
+<%= form_for @article ,url: { action: (@article.new_record? ? "create" : "update")} do |f| %>
+	<div class="form-group col-md-12 col-sm-12">
+		<%= f.label :title, '标题' %>:
+  	<%= f.text_field :title , class: "form-control"%>
+	</div>
+
+	<div class="form-group col-md-12 col-sm-12">
+		<%= f.label :tag, '标签' %>:
+  	<%= f.select(:tag, [['ruby','RUBY'],['css','CSS'],['JavaScript','JavaScript'],['闲谈','gossip']], class: 'form-control')%>
+	</div>
+	
+	<div class="form-group col-md-12 col-sm-12">
+		<%= f.label :content, '内容' %>:
+  	<%= f.text_area :content, class: "form-control article-content", style: "height: 400px"%>
+  	<p class="form-control md-view" style="height: 400px; display: none; overflow:scroll;"></p>
+	</div>
+
+  <div class="col-sm-12">
+  	<button type="button" class="btn btn-info preview_btn">预览</button>
+  	<%= submit_tag "保存", class: "btn btn-primary" %>
+  </div>
+<% end %>

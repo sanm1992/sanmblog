@@ -18,7 +18,15 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root 'articles#index', as: 'root'
+    root 'dashboard#index', as: 'root'
+    resources :dashboard, only: [:index]
     resources :articles
+    resources :comments
+
+    resources :articles do
+      member do
+        post 'delete'
+      end
+    end
   end
 end

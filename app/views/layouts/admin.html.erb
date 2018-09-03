@@ -1,14 +1,106 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SanmBlog</title>
+  	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SanmBlog 后台管理系统</title>
+    <meta name="description" content="博客后台管理系统">
+    <meta name="keywords" content="blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
     <%= csrf_meta_tags %>
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'admin/layout', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag    'common', 'admin/form', media: 'all', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
-  <body>
-    <%= yield %>
+ <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header">
+      <a class="app-header__logo" href="#">Sanm</a>
+      <!-- Sidebar toggle button-->
+      <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="Search">
+          <button class="app-search__button"><i class="fa fa-search"></i></button>
+        </li>
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> 设置</a></li>
+            <li>
+              <%= link_to raw("<i class='fa fa-sign-out fa-lg'></i>登出"), "", method: :delete, class: "dropdown-item" %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user">
+      	<!-- <img class="app-sidebar__user-avatar" src=<%= asset_path("about_me1.jpg") %> alt="User Image"> -->
+        <div>
+          <p class="app-sidebar__user-name">三木</p>
+          <p class="app-sidebar__user-designation">博客后台管理系统</p>
+        </div>
+      </div>
+      <ul class="app-menu">
+        <li>
+          <a class="app-menu__item" href=<%= admin_root_path %>>
+            <i class="app-menu__icon fa fa-dashboard"></i>
+            <span class="app-menu__label">控制面板</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a class="app-menu__item" href="#">
+            <i class="app-menu__icon fa fa-user fa-lg"></i>
+            <span class="app-menu__label">账号管理</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a class="app-menu__item" href="#" data-toggle="treeview">
+            <i class="app-menu__icon fa fa-file-text"></i>
+            <span class="app-menu__label">文章管理</span>
+            <i class="treeview-indicator fa fa-angle-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a class="treeview-item" href=<%=admin_articles_path%>>
+                <i class="icon fa fa-circle-o"></i>文章列表
+              </a>
+            </li>
+            <li>
+              <a class="treeview-item" href=<%=new_admin_article_path%>>
+                <i class="icon fa fa-circle-o"></i>新建文章
+              </a>
+            </li>
+            <li>
+              <a class="treeview-item" href="#">
+                <i class="icon fa fa-circle-o"></i> 留言列表
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <%= javascript_include_tag 'admin/layout', 'data-turbolinks-track': 'reload' %>
+    </aside>
+    <main class="app-content">
+      <div class="app-title">
+        <%= yield :fa_dashboard%>
+      </div>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
+    </main>
+    
   </body>
 </html>

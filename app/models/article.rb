@@ -1,12 +1,11 @@
 class Article < ApplicationRecord
 	has_many :comments
 
-	scope :about_me, -> { where(category: 'about_me') }
+	scope :about_me, -> { where(category: 'about_me')}
 	scope :tec_articles, -> {where(category: 'tec')}
 	scope :enabled, -> {where(enabled: true)}
 	scope :by_tag, -> (tag){where(tag: tag)}
 
-	validates :type, presence: true
 	validates :title, presence: true
 	validates :content, presence: true
 

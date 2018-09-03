@@ -1,1 +1,68 @@
-articles
+<% content_for :fa_dashboard do %>
+  <div>
+    <h1><i class="app-menu__icon fa fa-file-text"></i> 文章列表</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">文章管理</a></li>
+  </ul>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <div class="tile-body table-responsive" style="overflow: hidden;">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <a class="btn btn-success" href="/admin/articles/new">新建</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-hover" id="sampleTable">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>标题</th>
+                  <th>标签</th>
+                  <th>创建日期</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if @articles.present? %>
+                  <% @articles.each_with_index do |article, i| %>
+                    <tr>
+                      <td><%= i+1 %></td>
+                      <td><%= article.title %></td>
+                      <td><%= article.tag %></td>
+                      <td><%= format_date article.created_at %></td>
+                      <td>
+                        <%= link_to '详情', admin_article_path(article)%>
+                        <%= link_to '编辑', edit_admin_article_path(article)%>
+                        <%= link_to '下架', delete_admin_article_path(article), method: :post, data: { confirm: 'Are you sure?' } %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% else %>
+                  <tr >
+                    <td colspan="7">无数据</td>
+                  </tr>
+                <% end %>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+     <!--  <nav aria-label="Page navigation" style="text-align: right;">
+      	<ul class="pagination">
+	      	<%#= paginate @articles, params: {controller: 'admin/articles', action: 'index'}%>
+	      </ul>
+      </nav> -->
+      
+    </div>
+    
+  </div>
+</div>
