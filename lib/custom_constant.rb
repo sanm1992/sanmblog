@@ -15,8 +15,9 @@ module CustomConstant
   module ArticleTag
     extend ConstantValue
   	GOSSIP = 'gossip'
-    RUBY = 'RUBY'
-    CSS = 'CSS'
+    RUBY = 'ruby'
+    CSS = 'css'
     JS = 'JavaScript'
+    RAILS = 'rails'
   end
 end

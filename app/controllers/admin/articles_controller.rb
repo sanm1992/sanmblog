@@ -21,14 +21,14 @@ class Admin::ArticlesController < Admin::BaseController
 	  end
 	end
 
-	def delete
+	def destroy
 		@article = Article.find(params['id'])
 		if @article.update(enabled: false)
 			notice = '下架成功'
 		else
 			notice = '下架失败'
 		end
-		redirect_to(admin_article_path(@article), :notice => notice)
+		redirect_to(admin_articles_path, :notice => notice)
 	end
 
 	def edit
@@ -44,6 +44,15 @@ class Admin::ArticlesController < Admin::BaseController
       render :action => "new"
     end
 	end
+
+	def preview
+    text = MyMarkdown.render_markdown(params["text"]) if params["text"].present?
+    @markdown = {'text' => text || ''} 
+
+  	respond_to do |format|
+      format.json { render json: @markdown}
+	  end
+  end
 
 	private
 

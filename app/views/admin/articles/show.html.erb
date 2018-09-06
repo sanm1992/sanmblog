@@ -13,8 +13,8 @@
 	<div class="col-md-12">
     <div class="tile">
       <div class="tile-body table-responsive">
-      	<h1><%= @article.title %></h1>
-      	<p><%= @article.content %></p>
+      	<h1 style="text-align: center; margin: 20px 0;"><%= @article.title %></h1>
+      	<p><%= render_markdown @article.content %></p>
       </div>
     </div>
   </div>

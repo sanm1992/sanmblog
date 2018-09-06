@@ -4,6 +4,7 @@
 			<li>
 				<h1><%= article.title %></h1>
 				<time class="mui-flex verticent"><i class="am-icon-calendar am-icon-fw"></i><%= format_date article.created_at %></time>
+				<span class="tag"><%= I18n.t("client.article.#{article&.tag}") %></span>
 				<a href= <%=client_article_path(article)%>>
 					<p><%= article.content %></p>
 				</a>

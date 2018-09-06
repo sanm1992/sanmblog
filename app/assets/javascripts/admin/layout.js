@@ -1,3 +1,5 @@
+//= require rails-ujs
+
 (function () {
 	"use strict";
 

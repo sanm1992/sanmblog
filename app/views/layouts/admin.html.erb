@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <%= csrf_meta_tags %>
+    
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -97,6 +98,13 @@
       <div class="app-title">
         <%= yield :fa_dashboard%>
       </div>
+      <% if flash[:notice] %>
+        <div class="notice alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      
       <div class="container-fluid">
         <%= yield %>
       </div>

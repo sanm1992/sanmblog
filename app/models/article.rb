@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-	has_many :comments
+	has_many :comments, dependent: :destroy
 
 	scope :about_me, -> { where(category: 'about_me')}
 	scope :tec_articles, -> {where(category: 'tec')}

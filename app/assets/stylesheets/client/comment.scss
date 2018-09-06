@@ -10,4 +10,37 @@
 			color: red;
 		}
 	}
+
+	.comments-panel {
+		border: none;
+		box-shadow: none;
+
+		.panel-heading {
+			padding: 0;
+
+			a {
+				color: #333;
+
+				&:link,&:visited{
+				 	text-decoration:none;
+				}
+
+				.comment-button {
+					span {
+						font-size: 5px;
+		    		color: #b1acac;
+					}
+				}
+			}
+		}
+
+		.panel-body {
+			padding: 0;
+
+			.comment-notice {
+				font-size: 5px;
+		    color: #b1acac;
+			}
+		}
+	}
 }

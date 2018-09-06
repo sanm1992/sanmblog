@@ -55,4 +55,9 @@ module ApplicationHelper
 		 
 		pag_str.html_safe  
   end
+
+
+  def render_markdown(text)
+    MyMarkdown.render_markdown(text)
+  end
 end

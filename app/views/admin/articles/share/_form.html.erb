@@ -1,20 +1,33 @@
 <h3 style="text-align: center;"><%= @article.new_record? ? '新建文章' : '编辑文章' %></h3>
 
 <%= form_for @article ,url: { action: (@article.new_record? ? "create" : "update")} do |f| %>
+	<% if @article.errors.any? %>
+    <div id="error_explanation" class="form-group col-md-12 col-sm-12" style="color: red;">
+      <h2>
+        <%= pluralize(@article.errors.count, "个错误：") %>
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 	<div class="form-group col-md-12 col-sm-12">
-		<%= f.label :title, '标题' %>:
-  	<%= f.text_field :title , class: "form-control"%>
+		<%= f.label :title, '标题:' %>
+  	<%= f.text_field :title , class: "form-control", required: 'required'%>
 	</div>
 
 	<div class="form-group col-md-12 col-sm-12">
-		<%= f.label :tag, '标签' %>:
-  	<%= f.select(:tag, [['ruby','RUBY'],['css','CSS'],['JavaScript','JavaScript'],['闲谈','gossip']], class: 'form-control')%>
+		<%= f.label :tag, '标签:' %>
+  	<%= f.select(:tag, [['ruby','ruby'],['rails','rails'],['css','css'],['JavaScript','JavaScript'],['闲谈','gossip']], class: 'form-control')%>
 	</div>
 	
 	<div class="form-group col-md-12 col-sm-12">
-		<%= f.label :content, '内容' %>:
-  	<%= f.text_area :content, class: "form-control article-content", style: "height: 400px"%>
-  	<p class="form-control md-view" style="height: 400px; display: none; overflow:scroll;"></p>
+		<%= f.label :content, '内容:' %>
+  	<%= f.text_area :content, class: "form-control article-content", required: 'required', style: "min-height: 400px", autoHeight: "true"%>
+  	<p class="form-control md-view" autoHeight="true" style="min-height: 400px; display: none; overflow:scroll;"></p>
 	</div>
 
   <div class="col-sm-12">
@@ -22,3 +35,44 @@
   	<%= submit_tag "保存", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+	var preview_tag = true;
+	$(".edit_article, .new_article").find(".preview_btn").on('click', function(){
+		var article_content_dom = $(".article-content");
+		var md_view_dom = $("p.md-view");
+
+		$(".preview_btn").toggleClass("active");
+		md_view_dom.toggle();
+		article_content_dom.toggle();
+		
+		if (preview_tag){
+			preview();
+		}
+
+		preview_tag = !preview_tag;
+
+	})
+
+	function preview(){
+		var text = $("textarea.article-content").val();
+		if (!text) {return false;}
+		$.ajax({
+			type: "POST",
+			url: "/admin/articles/preview",
+			dataType: 'json',
+      data: $.extend({},{
+        utf8: "✓",
+        authenticity_token: $('meta[name="csrf-token"]').attr('content'),
+        text: text
+      }),
+			success: function(msg){
+				$("p.md-view").html(msg.text)
+			},
+			error: function(msg){
+				console.log('error', msg)
+			}
+		});
+	} 
+	
+</script>

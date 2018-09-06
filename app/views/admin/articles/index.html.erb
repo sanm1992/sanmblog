@@ -26,6 +26,7 @@
                   <th>标题</th>
                   <th>标签</th>
                   <th>创建日期</th>
+                  <th>状态</th>
                   <th>操作</th>
                 </tr>
               </thead>
@@ -37,10 +38,11 @@
                       <td><%= article.title %></td>
                       <td><%= article.tag %></td>
                       <td><%= format_date article.created_at %></td>
+                      <td><%= article.enabled ? '上架' : '下架' %>
                       <td>
                         <%= link_to '详情', admin_article_path(article)%>
                         <%= link_to '编辑', edit_admin_article_path(article)%>
-                        <%= link_to '下架', delete_admin_article_path(article), method: :post, data: { confirm: 'Are you sure?' } %>
+                        <%= link_to '下架', admin_article_path(article), method: :delete, data: { confirm: '确定删除?' } %>
                       </td>
                     </tr>
                   <% end %>

@@ -23,10 +23,16 @@ Rails.application.routes.draw do
     resources :articles
     resources :comments
 
-    resources :articles do
-      member do
-        post 'delete'
-      end
-    end
+    # resources :articles do
+    #   member do
+    #     # 成员路由
+    #   end
+
+    #   collection do
+    #     # 集合路由
+    #   end
+
+    # end
+    post 'articles/preview'
   end
 end
