@@ -3,6 +3,7 @@
   <head>
   	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href=<%= asset_path("logo.png") %> type="image/x-icon"/>
     <title>SanmBlog 后台管理系统</title>
     <meta name="description" content="博客后台管理系统">
     <meta name="keywords" content="blog">
@@ -38,7 +39,7 @@
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> 设置</a></li>
             <li>
-              <%= link_to raw("<i class='fa fa-sign-out fa-lg'></i>登出"), "", method: :delete, class: "dropdown-item" %>
+              <%= link_to raw("<i class='fa fa-sign-out fa-lg'></i>登出"), logout_path, method: :delete, class: "dropdown-item" %>
             </li>
           </ul>
         </li>
@@ -62,7 +63,7 @@
           </a>
         </li>
         <li class="treeview">
-          <a class="app-menu__item" href="#">
+          <a class="app-menu__item" href=<%= admin_users_path %>>
             <i class="app-menu__icon fa fa-user fa-lg"></i>
             <span class="app-menu__label">账号管理</span>
           </a>
@@ -82,11 +83,6 @@
             <li>
               <a class="treeview-item" href=<%=new_admin_article_path%>>
                 <i class="icon fa fa-circle-o"></i>新建文章
-              </a>
-            </li>
-            <li>
-              <a class="treeview-item" href="#">
-                <i class="icon fa fa-circle-o"></i> 留言列表
               </a>
             </li>
           </ul>

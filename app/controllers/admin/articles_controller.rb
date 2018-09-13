@@ -15,7 +15,7 @@ class Admin::ArticlesController < Admin::BaseController
 		@article = Article.find(params[:id])
 
 	  if @article.update(article_params)
-	    redirect_to(admin_article_path(@article), :notice => "更新成功")
+	    redirect_to(admin_article_path(@article), notice: "更新成功")
 	  else
 	    render 'edit'
 	  end
@@ -28,7 +28,7 @@ class Admin::ArticlesController < Admin::BaseController
 		else
 			notice = '下架失败'
 		end
-		redirect_to(admin_articles_path, :notice => notice)
+		redirect_to(admin_articles_path, notice: notice)
 	end
 
 	def edit
@@ -39,7 +39,7 @@ class Admin::ArticlesController < Admin::BaseController
     @article = Article.new(article_params)
 
     if @article.save
-      redirect_to(admin_article_path(@article), :notice => "创建成功")
+      redirect_to(admin_article_path(@article), notice: "创建成功")
     else
       render :action => "new"
     end
@@ -52,6 +52,19 @@ class Admin::ArticlesController < Admin::BaseController
   	respond_to do |format|
       format.json { render json: @markdown}
 	  end
+  end
+
+  def set_enabled
+  	article = Article.find_by(id: params[:id])
+  	article.enabled = true
+  	if article.save
+  		notice = '上架成功'
+  	else
+  		notice = '上架失败'
+  	end
+
+		redirect_to admin_articles_path, notice: notice
+
   end
 
 	private

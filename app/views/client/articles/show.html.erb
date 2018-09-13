@@ -5,12 +5,12 @@
 		<div class="mui-flex horicent justify guide-post">
 			<div>
 				<% if @previous.present? %>
-					<a href=<%=client_article_path(@previous)%>> <i class="am-icon-angle-left"></i>上一篇</a>
+					<a href=<%=client_article_path(@previous.id)%>> <i class="am-icon-angle-left"></i>上一篇</a>
 				<% end %>
 			</div>
 			<div>
 				<% if @next.present? %>
-					<a href=<%=client_article_path(@next)%>>下一篇<i class="am-icon-angle-right"></i> </a>
+					<a href=<%=client_article_path(@next.id)%>>下一篇<i class="am-icon-angle-right"></i> </a>
 				<% end %>
 			</div>
 		</div>

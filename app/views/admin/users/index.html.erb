@@ -1,0 +1,74 @@
+<% content_for :fa_dashboard do %>
+  <div>
+    <h1><i class="app-menu__icon fa fa-user fa-lg"></i> 后台账号列表</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">后台账号管理</a></li>
+  </ul>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <div class="tile-body table-responsive" style="overflow: hidden;">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <a class="btn btn-success" href=<%=new_admin_user_path%>>新建</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table table-hover" id="sampleTable">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>姓名</th>
+                  <th>邮箱</th>
+                  <th>注册日期</th>
+                  <th>上次登录时间</th>
+                  <th>登录次数</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if @users.present? %>
+                  <% @users.each_with_index do |user, i| %>
+                    <tr>
+                      <td><%= i+1 %></td>
+                      <td><%= user.name %></td>
+                      <td><%= user.email %></td>
+                      <td><%= format_date_time user.created_at %></td>
+                      <td><%= format_date_time user.last_sign_time %></td>
+                      <td><%= user.sign_times %></td>
+                      <td><%= user.enabled ? '启用' : '禁用' %></td>
+                      <td>
+                        <%= link_to '详情', admin_user_path(user)%>
+                        <%= link_to '编辑', edit_admin_user_path(user)%>
+                        <%#= link_to '下架', admin_article_path(article), method: :delete, data: { confirm: '确定删除?' } %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% else %>
+                  <tr >
+                    <td colspan="7">无数据</td>
+                  </tr>
+                <% end %>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+     <!--  <nav aria-label="Page navigation" style="text-align: right;">
+      	<ul class="pagination">
+	      	<%#= paginate @articles, params: {controller: 'admin/articles', action: 'index'}%>
+	      </ul>
+      </nav> -->
+      
+    </div>
+    
+  </div>
+</div>

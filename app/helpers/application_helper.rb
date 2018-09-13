@@ -12,6 +12,10 @@ module ApplicationHelper
     time.strftime("%Y-%m-%d") if time.present?
   end
 
+  def format_date_time(time)
+    time.strftime("%Y-%m-%d %H:%M:%S") if time.present?
+  end
+
   def month_day(time)
   	time.strftime("%m-%d") if time.present?
   end

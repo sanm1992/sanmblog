@@ -20,6 +20,10 @@
 	</div>
 
 	<div class="form-group col-md-12 col-sm-12">
+		<%= f.label :category, '类型' %>
+		<%= f.select(:category, [['关于我','about_me'],['闲谈','gossip'],['技术','tec']], class: 'form-control')%>
+	</div>
+	<div class="form-group col-md-12 col-sm-12">
 		<%= f.label :tag, '标签:' %>
   	<%= f.select(:tag, [['ruby','ruby'],['rails','rails'],['css','css'],['JavaScript','JavaScript'],['闲谈','gossip']], class: 'form-control')%>
 	</div>

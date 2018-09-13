@@ -1,17 +1,12 @@
 class Client::ArticlesController < Client::BaseController
 	def show
 		id = params['id'].to_i
-		articles = Article.enabled.tec_articles.where(id: [id-1, id, id+1]).group_by{|article| article.id}
-
-		@previous = articles[id-1]&.first
-		@article 	= articles[id]&.first
-		@next    	= articles[id+1]&.first
-
-		if @article.nil?
-			redirect_to client_home_index_path
-			return
-		end
+		@article = Article.enabled.tec_articles.find(params['id'])
 		@comments = @article.comments
+
+		@next    	= Article.next(params['id'])
+		@previous = Article.previous(params['id'])
+
 	end
 
 	def by_tag

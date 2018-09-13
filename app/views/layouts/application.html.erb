@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<link rel="icon" href=<%= asset_path("logo.png") %> type="image/x-icon"/>
     <title>SanmBlog</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'common', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
   <body>

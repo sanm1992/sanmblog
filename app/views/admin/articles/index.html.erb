@@ -42,7 +42,9 @@
                       <td>
                         <%= link_to '详情', admin_article_path(article)%>
                         <%= link_to '编辑', edit_admin_article_path(article)%>
-                        <%= link_to '下架', admin_article_path(article), method: :delete, data: { confirm: '确定删除?' } %>
+                        <%= (link_to '下架', admin_article_path(article), method: :delete, data: { confirm: '确定下架?' }) if article.enabled %>
+                        <%= (link_to '上架', set_enabled_admin_article_path(article), method: :post, data: { confirm: '确定上架?'}) unless article.enabled%>
+                        <%= link_to '评论', admin_comments_path({:article_id =>article.id})%>
                       </td>
                     </tr>
                   <% end %>

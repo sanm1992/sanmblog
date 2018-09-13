@@ -1,0 +1,25 @@
+<% content_for :fa_dashboard do %>
+  <div>
+    <h1><i class="app-menu__icon fa fa-user fa-lg"></i>后台账号详情</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href=<%= admin_users_path %>>后台账号列表</a></li>
+  </ul>
+<% end %>
+
+
+<div class="row">
+	<div class="col-md-12">
+    <div class="tile">
+      <div class="tile-body table-responsive">
+      	<div class="col-md-6"><label class="user-col">姓名:</label><%= @user.name %></div>
+        <div class="col-md-6"><label class="user-col">邮箱:</label><%= @user.email %></div>
+        <div class="col-md-6"><label class="user-col">注册时间:</label><%= format_date @user.created_at %></div>
+        <div class="col-md-6"><label class="user-col" >上次登录时间:</label><%= format_date @user.last_sign_time %></div>
+        <div class="col-md-6"><label class="user-col">登录次数:</label><%= @user.sign_times %></div>
+        <div class="col-md-6"><label class="user-col">状态:</label><%= @user.enabled ? '启用' : '禁用' %></div>
+      </div>
+    </div>
+  </div>
+</div>

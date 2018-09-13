@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-	has_many :comments, dependent: :destroy
+	has_many :comments
 
 	scope :about_me, -> { where(category: 'about_me')}
 	scope :tec_articles, -> {where(category: 'tec')}
@@ -16,6 +16,14 @@ class Article < ApplicationRecord
 			count = articles.size
 			articles = articles.group_by{|article| article['created_at'].year}
 			{"count" => count, "articles" => articles}
+		end
+
+		def next(this_id)
+			Article.enabled.tec_articles.where("id > ?", this_id).order(id: :asc).first
+		end
+
+		def previous(this_id)
+			Article.enabled.tec_articles.where("id < ?", this_id).order(id: :desc).first
 		end
 
 	end
