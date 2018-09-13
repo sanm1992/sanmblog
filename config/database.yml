@@ -8,10 +8,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  host: 39.108.184.220
+  host: host
   port: 3306
-  username: root
-  password: root123!
+  username: username
+  password: password
 
 development:
   <<: *default
