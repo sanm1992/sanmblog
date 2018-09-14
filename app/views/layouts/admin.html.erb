@@ -19,14 +19,14 @@
 
     <%= stylesheet_link_tag    'admin/layout', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= stylesheet_link_tag    'common', 'admin/form', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'common', 'admin/form', 'admin/kaminari', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   </head>
 
  <body class="app sidebar-mini rtl">
     <!-- Navbar-->
     <header class="app-header">
-      <a class="app-header__logo" href="#">Sanm</a>
+      <a class="app-header__logo" href="#"><%= current_user['name'] if login? %></a>
       <!-- Sidebar toggle button-->
       <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
@@ -37,7 +37,7 @@
         </li>
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
-            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> 设置</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fa fa-cog fa-lg"></i> 设置</a></li>
             <li>
               <%= link_to raw("<i class='fa fa-sign-out fa-lg'></i>登出"), logout_path, method: :delete, class: "dropdown-item" %>
             </li>
@@ -46,12 +46,11 @@
       </ul>
     </header>
     <!-- Sidebar menu-->
-    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
       	<!-- <img class="app-sidebar__user-avatar" src=<%= asset_path("about_me1.jpg") %> alt="User Image"> -->
         <div>
-          <p class="app-sidebar__user-name">三木</p>
+          <p class="app-sidebar__user-name"><%= current_user['name'] if login? %></p>
           <p class="app-sidebar__user-designation">博客后台管理系统</p>
         </div>
       </div>

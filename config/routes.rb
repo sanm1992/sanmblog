@@ -21,7 +21,12 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     # resources :articles
     resources :comments, only: [:index, :destroy]
-    resources :users
+    resources :users do
+      member do
+        post 'set_enabled'
+      end
+    end
+
     resources :articles do
       member do
         # 成员路由

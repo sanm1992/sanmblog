@@ -14,11 +14,11 @@
         <% end %>
       </div>
       <div class="form-group">
-        <%= f.label :email, class: "control-label"%><br />
-        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+        <%= f.label :email, '邮箱:', class: "control-label"%><br />
+        <%= f.email_field :email, autofocus: true, required: 'required', class: "form-control", placeholder: "Email" %>
       </div>
       <div class="form-group">
-        <%= f.label :password, class: "control-label" %><br />
+        <%= f.label :password, '密码:', class: "control-label" %><br />
         <%= f.password_field :password, autocomplete: "off", class: "form-control",  placeholder: "Password"%>
       </div>
 
@@ -41,8 +41,22 @@
     <%= form_for(:user, url: reset_path, html: { method: :post, :id=>'forget-form', :class=>'forget-form' }) do |f| %>
       <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>忘记密码 ?</h3>
       <div class="form-group">
-        <%= f.label :email, class: "control-label"%><br />
-        <%= f.email_field :email, autofocus: true, id: 'forget_email' ,class: "form-control", placeholder: "Email" %>
+        <%= f.label :email, '注册邮箱:', class: "control-label"%><br />
+        <%= f.email_field :email, autofocus: true, id: 'forget_email', required: 'required', class: "form-control", placeholder: "Email" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, '新密码:', class: "control-label"%><br />
+        <%= f.password_field :password, autofocus: true, id: 'forget_password', required: 'required', class: "form-control", placeholder: "paassword" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :verification_code, '验证码:', class: "control-label"%><br />
+        <%= f.text_field :verification_code, id: 'verification_code' , required: 'required', class: "form-control", placeholder: "验证码" %>
+        <div class="verification-box">
+          <%= link_to '获取验证码', 'javascript:void(0);', class: 'verification-code-link' %>
+          <span class="verification-notice"></span>
+        </div>
       </div>
       <div class="form-group btn-container actions">
         <%= f.submit "重置密码", class: "btn btn-primary btn-block" %>
@@ -52,7 +66,6 @@
       </div>
 
     <% end %>
-
   </div>
 </section>
 
@@ -63,4 +76,38 @@
     $('.login-box').toggleClass('flipped');
     return false;
   });
+
+  var count = 120;
+  $('.forget-form').on ('click' ,'.verification-code-link', function(){
+    if(count != 120) {return false;}
+    // 发送邮件
+    var forget_form = $('.forget-form');
+    var forget_email = forget_form.find('#forget_email').val();
+
+    if (!forget_email) {
+        forget_form.find('span.verification-notice').empty().html('请输入注册邮箱');
+        return false;
+    }
+
+
+    // 倒计时
+    $('.forget-form').find('.verification-code-link').attr("disabled",true).css("cursor", "not-allowed");
+    timedCount();
+
+  })
+
+  function timedCount(){
+    var timer;
+    if(count == 0) {
+      clearTimeout(timer);
+      $('.forget-form').find('.verification-code-link').attr("disabled",false).css("cursor", "pointer");
+      $('.forget-form').find('span.verification-notice').empty();
+      count = 120;
+      return;
+    }
+    count = count-1;
+    $('.forget-form').find('span.verification-notice').empty().html(count+'秒后重新发送验证码')
+    timer=setTimeout("timedCount()",1000)
+  }
+
 </script>

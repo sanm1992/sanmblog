@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   before_create :generate_authentication_token
 
+  scope :enabled , -> {where(enabled: true)}
+
   def generate_authentication_token
 		loop do
       self.authentication_token = SecureRandom.base64(64)

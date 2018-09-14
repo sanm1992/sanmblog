@@ -6,11 +6,9 @@ class Admin::CommentsController < Admin::BaseController
 
 	def destroy
 		@comment = Comment.find(params['id'])
-		if @comment.update(enabled: false)
-			notice = '删除成功'
-		else
-			notice = '删除失败'
-		end
+
+		notice = @comment.update(enabled: false) ? '删除成功' : '删除失败'
+
 		redirect_back(fallback_location: root_path, :notice => notice)
 	end
 end

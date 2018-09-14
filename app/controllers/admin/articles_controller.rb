@@ -1,6 +1,7 @@
 class Admin::ArticlesController < Admin::BaseController
 	def index
-		@articles = Article.tec_articles
+		page = params[:page] || 1
+		@articles = Article.tec_articles.page(page.to_i).per(20)
 	end
 
 	def show
@@ -23,11 +24,9 @@ class Admin::ArticlesController < Admin::BaseController
 
 	def destroy
 		@article = Article.find(params['id'])
-		if @article.update(enabled: false)
-			notice = '下架成功'
-		else
-			notice = '下架失败'
-		end
+
+		notice = @article.update(enabled: false) ? '下架成功' : '下架失败'
+		
 		redirect_to(admin_articles_path, notice: notice)
 	end
 
@@ -56,15 +55,10 @@ class Admin::ArticlesController < Admin::BaseController
 
   def set_enabled
   	article = Article.find_by(id: params[:id])
-  	article.enabled = true
-  	if article.save
-  		notice = '上架成功'
-  	else
-  		notice = '上架失败'
-  	end
+  	
+  	notice = article.update(enabled: true) ? '上架成功' : '上架失败'
 
 		redirect_to admin_articles_path, notice: notice
-
   end
 
 	private

@@ -60,11 +60,11 @@
         </div>
         
       </div>
-     <!--  <nav aria-label="Page navigation" style="text-align: right;">
-      	<ul class="pagination">
-	      	<%#= paginate @articles, params: {controller: 'admin/articles', action: 'index'}%>
+      <nav class="kaminari" aria-label="Page navigation" style="text-align: right;">
+      	<ul class="mui-flex flex-end pagination">
+	      	<%= paginate @articles, params: {controller: 'admin/articles', action: 'index'}%>
 	      </ul>
-      </nav> -->
+      </nav>
       
     </div>
     

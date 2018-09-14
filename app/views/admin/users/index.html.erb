@@ -46,27 +46,27 @@
                       <td>
                         <%= link_to '详情', admin_user_path(user)%>
                         <%= link_to '编辑', edit_admin_user_path(user)%>
-                        <%#= link_to '下架', admin_article_path(article), method: :delete, data: { confirm: '确定删除?' } %>
+                        <%= link_to '禁用', admin_user_path(user), method: :delete, data: { confirm: '确定禁用?' } if user.enabled %>
+                        <%= link_to '启用', set_enabled_admin_user_path(user), method: :post, data: { confirm: '确定启用?' } unless user.enabled %>
                       </td>
                     </tr>
                   <% end %>
                 <% else %>
                   <tr >
-                    <td colspan="7">无数据</td>
+                    <td colspan="8">无数据</td>
                   </tr>
                 <% end %>
-                
               </tbody>
             </table>
           </div>
         </div>
         
       </div>
-     <!--  <nav aria-label="Page navigation" style="text-align: right;">
-      	<ul class="pagination">
-	      	<%#= paginate @articles, params: {controller: 'admin/articles', action: 'index'}%>
+      <nav class="kaminari" aria-label="Page navigation" style="text-align: right;">
+      	<ul class="mui-flex flex-end pagination">
+	      	<%= paginate @users, params: {controller: 'admin/users', action: 'index'}%>
 	      </ul>
-      </nav> -->
+      </nav>
       
     </div>
     
