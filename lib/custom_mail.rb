@@ -1,6 +1,8 @@
 require 'mail'
 class CustomMail
 	class << self
+
+	def send_mail(params)
 		Mail.defaults do
 			delivery_method :smtp, {
 		    :port      => 25,
@@ -11,16 +13,15 @@ class CustomMail
 		    :openssl_verify_mode => 'none',
 		  }
 		end
-
-		def send_mail(params)
-			mail = Mail.deliver do
-			  to      params['email']
-			  from    'sanmbog@sanm.site'
-			  subject params['subject']
-			  text_part do
-			    body params['content'].to_s
-			  end
-			end
+		
+		mail = Mail.deliver do
+		  to      params['email'] || '1320695403@qq.com'
+		  from    'sanmbog@sanm.site'
+		  subject params['subject'] || 'test'
+		  text_part do
+		    body params['content'].to_s
+		  end
+		end
 
 		end
 	end
