@@ -37,6 +37,7 @@ gem 'coderay'
 gem 'therubyracer'
 gem 'execjs'
 gem 'dotenv-rails'
+gem 'passenger', '~>5.2.3'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
