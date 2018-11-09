@@ -1,7 +1,7 @@
 class Admin::ArticlesController < Admin::BaseController
 	def index
 		page = params[:page] || 1
-		@articles = Article.tec_articles.page(page.to_i).per(20)
+		@articles = Article.tec_articles.page(page.to_i).per(10)
 	end
 
 	def show
