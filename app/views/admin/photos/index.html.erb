@@ -24,34 +24,31 @@
                 <tr>
                   <th>序号</th>
                   <th>文件名</th>
-                  <th>大小</th>
+                  <th>云上链接</th>
+                  <th>缩略图</th>
                   <th>简介</th>
                   <th>上传日期</th>
-                  <th>修改日期</th>
                   <th>状态</th>
                   <th>操作</th>
                 </tr>
               </thead>
               <tbody>
-                <% if @comments.present? %>
-                  <% @comments.each_with_index do |comment, i| %>
+                <% if @photos.present? %>
+                  <% @photos.each_with_index do |photo, i| %>
                     <tr>
                       <td><%= i+1 %></td>
-                      <td><%=  %></td>
-                      <td><%=  %></td>
-                      <td><%=  %></td>
-                      <td><%=  %></td>
-                      <td><%=  %></td>
-                      <td><%=  %></td>
-                      <td><%=  %></td>
-                      <td>
-                       
-                      </td>
+                      <td><%= photo['name'] %></td>
+                      <td><%= link_to photo['oss_url'], photo['oss_url'] %></td>
+                      <td><%= image_tag photo['oss_url'] %></td>
+                      <td><%= photo['note'] %></td>
+                      <td><%= format_date photo['created_at'] %></td>
+                      <td><%= photo['enabled'] %></td>
+                      <td></td>
                     </tr>
                   <% end %>
                 <% else %>
                   <tr >
-                    <td colspan="8">无数据</td>
+                    <td colspan="5">无数据</td>
                   </tr>
                 <% end %>
                 
@@ -60,6 +57,13 @@
           </div>
         </div>
       </div>
+
+      <nav class="kaminari" aria-label="Page navigation" style="text-align: right;">
+        <ul class="mui-flex flex-end pagination">
+          <%= paginate @photos, params: {controller: 'admin/photos', action: 'index'}%>
+        </ul>
+      </nav>
+
     </div>
   </div>
 </div>

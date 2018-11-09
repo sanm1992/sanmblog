@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_150911) do
+ActiveRecord::Schema.define(version: 2018_11_09_061642) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "tag", limit: 32
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 2018_09_11_150911) do
     t.datetime "updated_at", null: false
     t.bigint "article_id"
     t.index ["article_id"], name: "index_comments_on_article_id"
+  end
+
+  create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "oss_url", null: false
+    t.boolean "enabled", default: true, null: false
+    t.text "note"
+    t.string "category", limit: 64, default: "daily", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

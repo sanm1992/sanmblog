@@ -1,22 +1,21 @@
-<h2>Upload object</h2>
 <%= form_tag(admin_photos_path, method: "post", :multipart=>true ) do %>
   <table class="table table-striped">
     <tr>
-      <td><label>Bucket:</label></td>
-      <td><%= @bucket.name  %></td>
+      <td><label>相册名:</label></td>
+      <td><input type="text" name="category" style="display:inline" required= 'required' /></td>
     </tr>
     <tr>
-      <td><label>Prefix:</label></td>
-      <td><%= @prefix  %></td>
+      <td><label>描述:</label></td>
+      <td><textarea type="text" name="note" style="display:inline" > </textarea></td>
     </tr>
     <tr>
-      <td><label>Select file:</label></td>
-      <td><input type="file" name="file" style="display:inline" /></td>
+      <td><label>选择文件:</label></td>
+      <td><input type="file" name="file" style="display:inline" required= 'required'/></td>
+      <!-- direct_upload=true multiple="multiple" -->
     </tr>
     <tr>
       <td colspan="2">
-        
-        <input type="submit" class="btn btn-default" direct_upload=true multiple="multiple"/>
+        <input type="submit" class="btn btn-default btn-success"/>
         <span>&nbsp;&nbsp</span>
       </td>
     </tr>
