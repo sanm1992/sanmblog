@@ -1,0 +1,19 @@
+<% content_for :fa_dashboard do %>
+  <div>
+    <h1><i class="app-menu__icon fa fa-file-text"></i>上传照片</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><%= link_to '相册管理', admin_photos_path%></li>
+  </ul>
+<% end %>
+
+<div class="row">
+	<div class="col-md-12">
+    <div class="tile">
+      <div class="tile-body table-responsive" style="min-height: 500px">
+      	<%= render "admin/photos/share/form" %>
+      </div>
+    </div>
+  </div>
+</div>

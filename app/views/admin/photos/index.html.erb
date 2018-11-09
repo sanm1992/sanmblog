@@ -1,0 +1,65 @@
+<% content_for :fa_dashboard do %>
+  <div>
+    <h1><i class="fa fa-dashboard"></i> 相册列表</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">相册管理</a></li>
+  </ul>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <div class="tile-body table-responsive" style="overflow: hidden;">
+      	<div class="row">
+          <div class="col-md-6 col-sm-12">
+            <a class="btn btn-success" href="/admin/photos/new">新建</a>
+          </div>
+        </div>
+      	<div class="row">
+          <div class="col-md-12">
+            <table class="table table-hover" id="sampleTable">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>文件名</th>
+                  <th>大小</th>
+                  <th>简介</th>
+                  <th>上传日期</th>
+                  <th>修改日期</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if @comments.present? %>
+                  <% @comments.each_with_index do |comment, i| %>
+                    <tr>
+                      <td><%= i+1 %></td>
+                      <td><%=  %></td>
+                      <td><%=  %></td>
+                      <td><%=  %></td>
+                      <td><%=  %></td>
+                      <td><%=  %></td>
+                      <td><%=  %></td>
+                      <td><%=  %></td>
+                      <td>
+                       
+                      </td>
+                    </tr>
+                  <% end %>
+                <% else %>
+                  <tr >
+                    <td colspan="8">无数据</td>
+                  </tr>
+                <% end %>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

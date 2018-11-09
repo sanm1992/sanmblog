@@ -32,3 +32,13 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+aliyun:
+  service: Aliyun
+  access_key_id: "LTAIgKrhOy0x2luP"
+  access_key_secret: "dQiSje01CjpAWZTfzjLq1hMaOW3Csx"
+  bucket: "sanm-blog"
+  endpoint: "http://oss-cn-hongkong.aliyuncs.com"
+  # path prefix, default: /
+  path: "/photos"
+  # Bucket mode: [public, private], default: public
+  mode: "public"

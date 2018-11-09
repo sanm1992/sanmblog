@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     # end
     post 'articles/preview'
 
+    resources :photos
+
   end
 
   get     'login'     => 'admin/sessions#new'
