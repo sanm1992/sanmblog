@@ -14,7 +14,7 @@
       <div class="tile-body table-responsive" style="overflow: hidden;">
       	<div class="row">
           <div class="col-md-6 col-sm-12">
-            <a class="btn btn-success" href="/admin/photos/new">新建</a>
+            <a class="btn btn-success" href="/admin/photos/new">上传相片</a>
           </div>
         </div>
       	<div class="row">
@@ -42,8 +42,8 @@
                       <td><%= image_tag photo['oss_url'] %></td>
                       <td><%= photo['note'] %></td>
                       <td><%= format_date photo['created_at'] %></td>
-                      <td><%= photo['enabled'] %></td>
-                      <td></td>
+                      <td><%= photo['enabled'] ? '展示中' : '已撤下' %></td>
+                      <td><%= (link_to '撤下', admin_photo_path(photo), method: :delete, data: { confirm: '确定撤下?' }) if photo.enabled %></td>
                     </tr>
                   <% end %>
                 <% else %>

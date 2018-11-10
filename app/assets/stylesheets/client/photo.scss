@@ -1,0 +1,12 @@
+.photos-list {
+	min-height: 895px;
+	padding: 10px 0;
+
+	.thumbnail {
+		.caption {
+			p {
+				margin: 0;
+			}
+		}
+	}
+}

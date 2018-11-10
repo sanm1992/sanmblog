@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :archives, only: [:index]
     # resources :comments, except: [:destroy, :index, :show]
     resources :comments, only: [:create, :index]
+    resources :photos, only: [:index]
     resources :articles, only: [:index, :show] do 
       collection do
         get 'by_tag'

@@ -1,0 +1,20 @@
+<div class="row photos-list">
+	<% if @photos.present? %>
+		<% @photos.each do |photo| %>
+			<div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+		      <img src= <%= photo['oss_url'] %> alt="...">
+		      <% if photo['note'].present? %>
+		      	<div class="caption">
+			        <p><%= photo['note'] %></p>
+			      </div>
+		      <% end %>
+		    </div>
+		  </div>
+		<% end %>
+	<% else %>
+		<div>
+			<span>博主暂时没有展示任何相片</span>
+		</div>
+	<% end %>
+</div>
