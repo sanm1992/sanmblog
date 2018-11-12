@@ -42,7 +42,10 @@ Rails.application.routes.draw do
     # end
     post 'articles/preview'
 
-    resources :photos
+    resources :photos do
+      delete 'delete'
+      post 'set_enabled'
+    end
 
   end
 

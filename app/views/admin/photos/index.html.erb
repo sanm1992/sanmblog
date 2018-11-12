@@ -43,7 +43,12 @@
                       <td><%= photo['note'] %></td>
                       <td><%= format_date photo['created_at'] %></td>
                       <td><%= photo['enabled'] ? '展示中' : '已撤下' %></td>
-                      <td><%= (link_to '撤下', admin_photo_path(photo), method: :delete, data: { confirm: '确定撤下?' }) if photo.enabled %></td>
+                      <td>
+                        <%= link_to '撤下', admin_photo_path(photo), method: :delete, data: { confirm: '确定撤下?' } if photo.enabled %>
+                        <%= link_to '展示', admin_photo_set_enabled_path(photo), method: :post, data: { confirm: '确定展示?' } unless photo.enabled %>
+                        <%= link_to '删除', admin_photo_delete_path(photo), method: :delete, data: {confirm: '确定删除?'} %>
+                      </td>
+
                     </tr>
                   <% end %>
                 <% else %>
