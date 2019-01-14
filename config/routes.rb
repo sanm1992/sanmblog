@@ -47,6 +47,10 @@ Rails.application.routes.draw do
       post 'set_enabled'
     end
 
+    resources :article_tags do
+      post 'set_enabled'
+    end
+
   end
 
   get     'login'     => 'admin/sessions#new'

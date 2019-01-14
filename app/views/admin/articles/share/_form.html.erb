@@ -25,7 +25,7 @@
 	</div>
 	<div class="form-group col-md-12 col-sm-12">
 		<%= f.label :tag, '标签:' %>
-  	<%= f.select(:tag, [['ruby','ruby'],['rails','rails'],['css','css'],['JavaScript','JavaScript'],['闲谈','gossip']], class: 'form-control')%>
+  	<%= f.select(:tag, Tag.for_select, class: 'form-control')%>
 	</div>
 	
 	<div class="form-group col-md-12 col-sm-12">
