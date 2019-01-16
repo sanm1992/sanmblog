@@ -64,4 +64,14 @@ module ApplicationHelper
   def render_markdown(text)
     MyMarkdown.render_markdown(text)
   end
+
+  def tag_url
+    content = ActiveSupport::SafeBuffer.new
+    tags = Tag.for_select
+    tags.each do |tag|
+      link_str = link_to(tag[0], by_tag_client_articles_url(tag: tag[1]))
+      content << link_str
+    end
+    content
+  end
 end
