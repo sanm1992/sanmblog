@@ -22,7 +22,7 @@ header{
 
 footer {
   color: #fff;
-  background-color: #222222;
+  background-color: #5f6570;
   padding: 1rem;
   width: 100%;
 
@@ -33,10 +33,10 @@ a {
 }
 
 .navbar-default {
-	background-color: #222222;
+	background-color: #5f6570;
 	border-radius: 0;
-	border-color: #222222;
-	padding: 0.5rem;
+	border-color: #5f6570;
+	/*padding: 0.5rem;*/
 	color: #fff;
 
 	.nav-title {
@@ -55,11 +55,25 @@ a {
 	.navbar-nav>li>a {
 		color: #fff;
 		font-size: 1.5rem;
+		border-bottom: 2px solid #5f6570;
+		transition:width 1s;
+		-moz-transition:border-bottom 1s; /* Firefox 4 */
+		-webkit-transition:border-bottom 1s; /* Safari and Chrome */
+		-o-transition:border-bottom 1s; /* Opera */
 
 		&:hover{
 			color: #bfb5b5;
+			border-bottom: 2px solid #bfb5b5;
+			position:relative;
+			
 		};
 	}
+
+	.navbar-nav>li>.active {
+		color: #bfb5b5;
+		border-bottom: 2px solid #bfb5b5;
+	}
+
 }
 
 .main-content {
