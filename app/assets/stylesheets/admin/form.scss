@@ -32,3 +32,34 @@ select {
     height: 50px;
   } 
 }
+
+.message-list {
+  .message-item {
+    position: relative;
+    border-bottom: 1px solid #009688;
+    margin-bottom: 1rem;
+
+    .order-number {
+      position: absolute;
+      left: -20px;
+      background-color: #009688;
+      width: 14px;
+      height: 14px;
+      line-height: 14px;
+      text-align: center;
+
+      .number {
+        color: #FFF;
+        font-size: 12px;
+      }
+    }
+
+    label {
+      width: 30px;
+    }
+  }
+
+  li {
+    list-style: none;
+  }
+}

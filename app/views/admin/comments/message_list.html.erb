@@ -1,0 +1,57 @@
+<% content_for :fa_dashboard do %>
+  <div>
+    <h1><i class="app-menu__icon fa fa-comments"></i>留言管理</h1>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+    <li class="breadcrumb-item"><a href="#">留言管理</a></li>
+  </ul>
+<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="tile">
+      <div class="tile-body table-responsive" style="overflow: hidden;">
+      	<div class="row">
+          <div class="col-md-12">
+          	<ul class="message-list">
+          		<% if @messages.present? %>
+          			<% @messages.each_with_index do |message, index| %>
+          				<li class="message-item">
+          					<div class="order-number">
+          						<span class="number"><%= index+1 %></span>
+          					</div>
+          					<div class="use-name">
+          						<label>姓名:</label>
+          						<span><%= message['user_name'] %></span>
+          					</div>
+          					<div class="email">
+          						<label>email:</label>
+          						<span><%= message['email'] %></span>
+          					</div>
+          					<div class="created-at">
+          						<label>时间:</label>
+          						<span><%= format_date_time message['created_at'] %></span>
+          					</div>
+          					<div class="content">
+          						<label>留言:</label>
+          						<span><%= message['content'] %></span>
+          					</div>
+          				</li>
+          			<% end %>
+          		<% else %>
+          			<li>
+          				<p>暂无留言</p>
+          			</li>
+          		<% end %>
+          	</ul>
+          </div>
+        </div>
+      </div>
+      <nav class="kaminari" aria-label="Page navigation" style="text-align: right;">
+      	<ul class="mui-flex flex-end pagination">
+	      	<%= paginate @messages, params: {controller: '/admin/comments', action: 'message_list'}%>
+	      </ul>
+      </nav>
+    </div>
+  </div>
+</div>

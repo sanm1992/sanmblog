@@ -11,4 +11,9 @@ class Admin::CommentsController < Admin::BaseController
 
 		redirect_back(fallback_location: root_path, :notice => notice)
 	end
+
+	def message_list
+		page = params[:page] || 1
+		@messages = Comment.personal_letter.order(:created_at).page(page.to_i).per(10)
+	end
 end

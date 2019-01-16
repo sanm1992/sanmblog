@@ -21,7 +21,11 @@ Rails.application.routes.draw do
     root 'dashboard#index', as: 'root'
     resources :dashboard, only: [:index]
     # resources :articles
-    resources :comments, only: [:index, :destroy]
+    resources :comments, only: [:index, :destroy] do
+      collection do
+        get 'message_list'
+      end
+    end
     resources :users do
       member do
         post 'set_enabled'
