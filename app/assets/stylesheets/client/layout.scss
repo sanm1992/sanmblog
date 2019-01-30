@@ -178,20 +178,32 @@ a {
 			margin-top: 2rem;
 			padding: 2rem;
 
-			p {
-				margin: 0; 
-				margin-bottom: 2px;
-				font-size: 15px;
-			}
-
 			.time {
-				font-size: 2px;
-				padding: 0 1rem;
+				font-size: 12px;
+				/*padding: 0 1rem;*/
 			}
 
-			li {
-				margin-bottom: 1rem;
+			a {
+				display: inline-block;
+				width: 70%;
+				text-decoration:none;
+				white-space:nowrap;
+				overflow:hidden;
+				text-overflow: ellipsis;
+				-o-text-overflow:ellipsis;
+				-webkit-line-clamp:1;
+				font-size: 14px;
 			}
+
+			span {
+				display: inline-block;
+				width: 28%;
+				text-align: right;
+			}
+
+			/*li {
+				margin-bottom: 1rem;
+			}*/
 		}
 	}
 	

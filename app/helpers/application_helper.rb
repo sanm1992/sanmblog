@@ -9,7 +9,9 @@ module ApplicationHelper
 	end
 
 	def format_date(time)
-    time.strftime("%Y-%m-%d") if time.present?
+    return '' if time.blank?
+
+    time.to_time.strftime("%Y-%m-%d") if time.present?
   end
 
   def format_date_time(time)
@@ -73,6 +75,16 @@ module ApplicationHelper
       content << link_str
     end
     content
+  end
+
+  def news
+    news = $redis.get(:news)
+    if news.blank?
+      news = Article.enabled.tec_articles.news.select(%w[id title created_at]).as_json
+      $redis.set(:news, news.to_json)
+    end
+
+    news = news.is_a?(String) ? JSON.parse(news) : news
   end
 
 end

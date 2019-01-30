@@ -106,9 +106,15 @@
               </p>
             </li>
             <li class="new-articles">
-              <h3>近期跟新</h3>
+              <h3>近期更新</h3>
               <ul>
-                博主正在玩命跟新中
+                <% news.each do |n| %>
+                  <li class="news-item">
+                    <a href=<%= client_article_path(n['id']) %>><%= n['title'] %></a>
+
+                    <span class="time"><%= format_date n['created_at'] %></span>
+                  <li>
+                <% end %>
               </ul>
             </li>
           </ul>
