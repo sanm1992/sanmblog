@@ -142,6 +142,20 @@
         $(window).scroll(function(event){
           var winPos = $(window).scrollTop();
           var goTop = $(".gotop");
+          var floatNavbar = $("#client_navbar");
+
+          if (winPos > 163) {
+            floatNavbar.css("position", "fixed");
+            floatNavbar.css("top", "0");
+            floatNavbar.css("z-index", "100");
+            floatNavbar.css("width", "100%");
+
+          } else {
+            floatNavbar.css("position", "");
+            floatNavbar.css("top", "");
+            floatNavbar.css("z-index", "");
+          }
+
           if(winPos > 400) {
             goTop.show();
           } else {
