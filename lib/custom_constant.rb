@@ -12,12 +12,4 @@ module CustomConstant
   # 	TEST = 'test'.freeze
   # end
 
-  module ArticleTag
-    extend ConstantValue
-  	GOSSIP = 'gossip'
-    RUBY = 'ruby'
-    CSS = 'css'
-    JS = 'JavaScript'
-    RAILS = 'rails'
-  end
 end

@@ -69,7 +69,7 @@ module ApplicationHelper
 
   def tag_url
     content = ActiveSupport::SafeBuffer.new
-    tags = Tag.for_select
+    tags = ArticleTag.for_select
     tags.each do |tag|
       link_str = link_to(tag[0], by_tag_client_articles_url(tag: tag[1]))
       content << link_str
