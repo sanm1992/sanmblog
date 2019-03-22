@@ -67,6 +67,10 @@ module ApplicationHelper
     MyMarkdown.render_markdown(text)
   end
 
+  def content_str(html_content)
+    html_content.gsub(/<\/?.+?\/?>/, "")
+  end
+
   def tag_url
     content = ActiveSupport::SafeBuffer.new
     tags = ArticleTag.for_select

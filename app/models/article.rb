@@ -18,6 +18,10 @@ class Article < ApplicationRecord
 		category == 'tec'
 	end
 
+	def html_content
+		MyMarkdown.render_markdown(self.content)
+	end
+
 	class << self
 		def archives
 			articles = Article.enabled.tec_articles.order(created_at: :desc).select('title, created_at ,id').as_json
