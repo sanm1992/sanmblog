@@ -1,15 +1,15 @@
 class Admin::ArticleTagsController < Admin::BaseController
 	def index
 		page = params[:page] || 1
-		@article_tags = Tag.page(page.to_i).per(10)
+		@article_tags = ArticleTag.page(page.to_i).per(10)
 	end
 
 	def new
-		@article_tag = Tag.new
+		@article_tag = ArticleTag.new
 	end
 
 	def create
-		 @article_tag = Tag.new(article_tag_params)
+		 @article_tag = ArticleTag.new(article_tag_params)
 
     if @article_tag.save
       redirect_to(admin_article_tags_path, notice: "创建成功")
@@ -19,11 +19,11 @@ class Admin::ArticleTagsController < Admin::BaseController
 	end
 
 	def edit
-		@article_tag = Tag.find(params[:id])
+		@article_tag = ArticleTag.find(params[:id])
 	end
 
 	def update
-		@article_tag = Tag.find(params[:id])
+		@article_tag = ArticleTag.find(params[:id])
 
 	  if @article_tag.update(article_tag_params)
 	    redirect_to(admin_article_tag_path(@article_tag), notice: "更新成功")
@@ -33,7 +33,7 @@ class Admin::ArticleTagsController < Admin::BaseController
 	end
 
 	def destroy
-		@article_tag = Tag.find(params['id'])
+		@article_tag = ArticleTag.find(params['id'])
 
 		notice = @article_tag.update(enabled: false) ? '删除成功' : '删除失败'
 		
