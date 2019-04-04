@@ -9,6 +9,7 @@ class Admin::ArticleTagsController < Admin::BaseController
 	end
 
 	def create
+    p '222', params
 		 @article_tag = ArticleTag.new(article_tag_params)
 
     if @article_tag.save
@@ -43,6 +44,6 @@ class Admin::ArticleTagsController < Admin::BaseController
 	private
 
   def article_tag_params
-    params.require(:tag).permit(:name, :code)
+    params.require(:article_tag).permit(:name, :code)
   end
 end
