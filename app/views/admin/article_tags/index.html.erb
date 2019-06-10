@@ -41,7 +41,7 @@
                       <td>
                         <%= link_to '编辑', edit_admin_article_tag_path(tag)%>
                         <%= (link_to '废弃', admin_article_tag_path(tag), method: :delete, data: { confirm: '确定废弃?' }) if tag.enabled %>
-                        <%= (link_to '使用', set_enabled_admin_article_tags_path(article), method: :post, data: { confirm: '确定使用?'}) unless tag.enabled%>
+                        <%= (link_to '使用', set_enabled_admin_article_tags_path(tag), method: :post, data: { confirm: '确定使用?'}) unless tag.enabled%>
                       </td>
                     </tr>
                   <% end %>
